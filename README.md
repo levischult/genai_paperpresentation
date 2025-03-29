@@ -1,4 +1,7 @@
-# GenCast vs. GraphCast - Utilizing Sparse Transformers within Machine Learning Weather Prediction (MLWP)
+# GenCast - Utilizing Sparse Transformers within Machine Learning Weather Prediction (MLWP)
+Price, I., Sanchez-Gonzalez, A., Alet, F., Andersson, T. R., El-Kadi, A., Masters, D., Ewalds, T., Stott, J., Mohamed, S., Battaglia, P., Lam, R., & Willson, M. (2023), “GenCast: Diffusion-based ensemble forecasting for medium-range weather”, Nature,  [https://doi.org/10.48550/arXiv.2312.15796](https://doi.org/10.1038/s41586-024-08252-9), arXiv:2312.15796.
+
+
 
 ## Overview
 
@@ -13,4 +16,7 @@ Critical Analysis
 
 ## Impacts
 - This work as well as GraphCast have introduced MLWP as a capable tool for decisionmakers globally. While NWP is still greatly needed, MLWP models such as these can provide rapid cross validation and data to stakeholders around extreme weather events.
-- One author on both (Ferran Alet) has spoken about how this work has alerted European weather prediction agencies to the power of MLWP, 
+- One author on both (Ferran Alet) has spoken about how this work has alerted European weather prediction agencies to the power of MLWP and are now investing in GPU infrastructure for this purpose
+
+Resources
+
