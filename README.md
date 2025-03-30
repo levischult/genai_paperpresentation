@@ -12,6 +12,7 @@ Price, I., Sanchez-Gonzalez, A., Alet, F. et al. Probabilistic weather forecasti
 
 ## Architecture Overview
 
+![image](./images/sparsetrans.png) 
 
 
 ![image](./images/graphcastmesh.png) 
