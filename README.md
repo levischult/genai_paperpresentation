@@ -13,6 +13,10 @@ Price, I., Sanchez-Gonzalez, A., Alet, F. et al. Probabilistic weather forecasti
 ## Architecture Overview
 
 
+
+![image](../images/Scree) 
+
+
 ## Question:
 Why would a sparse transformer be preferred to a normal transformer?
 
