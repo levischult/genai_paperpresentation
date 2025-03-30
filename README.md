@@ -7,18 +7,16 @@ Price, I., Sanchez-Gonzalez, A., Alet, F. et al. Probabilistic weather forecasti
   - This distribution becomes narrower for shorter prediction time periods (we are more certain about the weather 1 day from now versus 10 days from now).
   - NWP accuracy scales well with compute but has no ability to learn from past weather.
 - Machine Learning Weather Prediction (MLWP) has recently emerged using a variety of techniques (Convolutional Neural Networks, Graph Neural Networks, Fourier Neural Operators, and Transformers -- see citations for works).
-  - These approaches have not been pro
+  - These approaches have not been probalistic in nature, however, usually forecasting the mean of forecast trajectories. 
 - 
+
+## Architecture Overview
+
 
 ## Question:
 Why would a sparse transformer be preferred to a normal transformer?
 
 - Answer: Compute and also physics - Performing attention for every node on all others is a huge load on the model. Additionally, we expect the weather in Nashville to be primarily affected by conditions in our local area e.g. Tennessee, rather than the conditions in Australia for example.
-
-## Architecture Overview
-
-
-
 
 ## Critical Analysis
 
