@@ -6,7 +6,9 @@ Price, I., Sanchez-Gonzalez, A., Alet, F. et al. Probabilistic weather forecasti
 - Since weather is inherently chaotic, it is impossible to predict the exact weather state of the future. NWP instead slightly perturbs input observations to generate an ensemble of weather forecasts, encompassing the probability distribution of future weather.
   - This distribution becomes narrower for shorter prediction time periods (we are more certain about the weather 1 day from now versus 10 days from now).
   - NWP accuracy scales well with compute but has no ability to learn from past weather.
-- Machine Learning Weather Prediction (MLWP) has 
+- Machine Learning Weather Prediction (MLWP) has recently emerged using a variety of techniques (Convolutional Neural Networks, Graph Neural Networks, Fourier Neural Operators, and Transformers).
+  - 
+  - 
 - 
 
 ## Question:
@@ -36,6 +38,22 @@ Why would a sparse transformer be preferred to a normal transformer?
 - [Github Repo for GenCast and GraphCast](https://github.com/google-deepmind/graphcast)
 - [Google DeepMind Blog Post about GenCast](https://deepmind.google/discover/blog/gencast-predicts-weather-and-the-risks-of-extreme-conditions-with-sota-accuracy/)
 - [ECMWF Reanalysis v5 {ERA5} - the dataset GenCast was trained on](https://www.ecmwf.int/en/forecasts/dataset/ecmwf-reanalysis-v5)
+- Other MLWP
+  - Transformers: 
+    - Bi, K., Xie, L., Zhang, H., Chen, X., Gu, X., & Tian, Q. (2022), “Pangu-Weather: A 3D High-Resolution Model for Fast and Accurate Global Weather Forecast”, eprint arXiv:2211.02556, arXiv:2211.02556 ( pp),  [https://doi.org/10.48550/arXiv.2211.02556](https://doi.org/10.48550/arXiv.2211.02556), arXiv:2211.02556.
+    - Nguyen, T., Brandstetter, J., Kapoor, A., Gupta, J. K., & Grover, A. (2023), “ClimaX: A Foundation Model for Weather and Climate”, AGU Fall Meeting 2023, held in San Francisco, CA, 11-15 December 2023, Session: Global Environmental Change / Deep Learning in Climate, Weather, and Earth Sciences I Oral, id. GC21A-01., 2023, GC21A-01 ( pp),  [https://doi.org/10.48550/arXiv.2301.10343](https://doi.org/10.48550/arXiv.2301.10343), arXiv:2301.10343.
+    - Chen, K., Han, T., Gong, J., Bai, L., Ling, F., Luo, J.-J., Chen, X., Ma, L., Zhang, T., Su, R., Ci, Y., Li, B., Yang, X., & Ouyang, W. (2023), “FengWu: Pushing the Skillful Global Medium-range Weather Forecast beyond 10 Days Lead”, eprint arXiv:2304.02948, arXiv:2304.02948 ( pp),  [https://doi.org/10.48550/arXiv.2304.02948](https://doi.org/10.48550/arXiv.2304.02948), arXiv:2304.02948.
+  - Fourier Neural Operators
+    - Pathak, J., Subramanian, S., Harrington, P., Raja, S., Chattopadhyay, A., Mardani, M., Kurth, T., Hall, D., Li, Z., Azizzadenesheli, K., Hassanzadeh, P., Kashinath, K., & Anandkumar, A. (2022), “FourCastNet: A Global Data-driven High-resolution Weather Model using Adaptive Fourier Neural Operators”, eprint arXiv:2202.11214, arXiv:2202.11214 ( pp),  [https://doi.org/10.48550/arXiv.2202.11214](https://doi.org/10.48550/arXiv.2202.11214), arXiv:2202.11214.
+  - Graph Neural Networks
+    - Keisler, R. (2022), “Forecasting Global Weather with Graph Neural Networks”, eprint arXiv:2202.07575, arXiv:2202.07575 ( pp),  [https://doi.org/10.48550/arXiv.2202.07575](https://doi.org/10.48550/arXiv.2202.07575), arXiv:2202.07575.
+
+
+
+
+
+
+
 
 
 
