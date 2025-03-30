@@ -14,7 +14,7 @@ Price, I., Sanchez-Gonzalez, A., Alet, F. et al. Probabilistic weather forecasti
 
 
 
-![image](../images/Scree) 
+![image](../images/) 
 
 
 ## Question:
