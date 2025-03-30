@@ -10,6 +10,9 @@ Why would a sparse transformer be preferred to a normal transformer?
 
 ## Architecture Overview
 
+
+
+
 ## Critical Analysis
 
 ## Impacts
