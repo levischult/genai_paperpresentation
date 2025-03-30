@@ -6,8 +6,7 @@ Price, I., Sanchez-Gonzalez, A., Alet, F. et al. Probabilistic weather forecasti
 - Since weather is inherently chaotic, it is impossible to predict the exact weather state of the future. NWP instead slightly perturbs input observations to generate an ensemble of weather forecasts, encompassing the probability distribution of future weather.
   - This distribution becomes narrower for shorter prediction time periods (we are more certain about the weather 1 day from now versus 10 days from now).
   - NWP accuracy scales well with compute but has no ability to learn from past weather.
-- Machine Learning Weather Prediction (MLWP) has recently emerged using a variety of techniques (Convolutional Neural Networks, Graph Neural Networks, Fourier Neural Operators, and Transformers).
-  - 
+- Machine Learning Weather Prediction (MLWP) has recently emerged using a variety of techniques (Convolutional Neural Networks, Graph Neural Networks, Fourier Neural Operators, and Transformers -- see citations for works).
   - 
 - 
 
@@ -47,6 +46,20 @@ Why would a sparse transformer be preferred to a normal transformer?
     - Pathak, J., Subramanian, S., Harrington, P., Raja, S., Chattopadhyay, A., Mardani, M., Kurth, T., Hall, D., Li, Z., Azizzadenesheli, K., Hassanzadeh, P., Kashinath, K., & Anandkumar, A. (2022), “FourCastNet: A Global Data-driven High-resolution Weather Model using Adaptive Fourier Neural Operators”, eprint arXiv:2202.11214, arXiv:2202.11214 ( pp),  [https://doi.org/10.48550/arXiv.2202.11214](https://doi.org/10.48550/arXiv.2202.11214), arXiv:2202.11214.
   - Graph Neural Networks
     - Keisler, R. (2022), “Forecasting Global Weather with Graph Neural Networks”, eprint arXiv:2202.07575, arXiv:2202.07575 ( pp),  [https://doi.org/10.48550/arXiv.2202.07575](https://doi.org/10.48550/arXiv.2202.07575), arXiv:2202.07575.
+  - Convolutional Neural Networks
+    - Weyn, J. A., Durran, D. R., &
+Caruana, R. (2019). Can machines
+learn to predict weather? Using deep
+learning to predict gridded 500-hPa
+geopotential height from historical
+weather data. Journal of Advances
+in Modeling Earth Systems, 11,
+2680–2693. https://doi.org/10.1029/
+2019MS001705
+    - Weyn, J. A., Durran, D. R., Caruana, R., & Cresswell-Clay, N. (2021), “Sub-Seasonal Forecasting With a Large Ensemble of Deep-Learning Weather Prediction Models”, Journal of Advances in Modeling Earth Systems, Volume 13, Issue 7, article id. e2021MS002502, 13, e2021MS002502 ( pp),  [https://doi.org/10.1029/2021MS002502](https://doi.org/10.1029/2021MS002502), arXiv:2102.05107.
+    - Rasp, S., & Thuerey, N. (2021), “Data Driven Medium Range Weather Prediction With a Resnet Pretrained on Climate Simulations: A New Model for WeatherBench”, Journal of Advances in Modeling Earth Systems, Volume 13, Issue 2, article id. e2020MS002405, 13, e2020MS002405 ( pp),  [https://doi.org/10.1029/2020MS002405](https://doi.org/10.1029/2020MS002405), arXiv:2008.08626.
+
+
 
 
 
