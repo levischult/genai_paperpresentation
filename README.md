@@ -2,6 +2,12 @@
 Price, I., Sanchez-Gonzalez, A., Alet, F. et al. Probabilistic weather forecasting with machine learning. Nature 637, 84–90 (2025). https://doi.org/10.1038/s41586-024-08252-9
 
 ## Overview
+- Individuals, businesses, and governments around the world use weather predictions to make operational decisions, affecting billions of lives. These weather predictions are produced via Numerical Weather Prediction (NWP) wherein supercomputers programmed with the laws of physics and atmospheric chemistry take in observations of current atmospheric conditions and forward model their time evolution over the next 10-15 days.
+- Since weather is inherently chaotic, it is impossible to predict the exact weather state of the future. NWP instead slightly perturbs input observations to generate an ensemble of weather forecasts, encompassing the probability distribution of future weather.
+  - This distribution becomes narrower for shorter prediction time periods (we are more certain about the weather 1 day from now versus 10 days from now).
+  - NWP accuracy scales well with compute but has no ability to learn from past weather.
+- Machine Learning Weather Prediction (MLWP) has 
+- 
 
 ## Question:
 Why would a sparse transformer be preferred to a normal transformer?
