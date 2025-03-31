@@ -55,11 +55,11 @@ e_m2g_embed = MLP4(e_m2g_features)
 
 #### Encoder() - This is a graph neural network
 Input:
-e_g2m_embed
-n_grid_embed
-n_mesh_embed
+- e_g2m_embed
+- n_grid_embed
+- n_mesh_embed
 Output:
-The above variables updated based on the information passed from the grid to the mesh
+- The above variables updated based on the information passed from the grid to the mesh
 ```
 # update grid to mesh edges based on adjacent node info with an MLP
 1. e_g2m_e_prime = MLP5(e_g2m_embed, n_grid_embed, n_mesh_embed)
@@ -75,10 +75,10 @@ The above variables updated based on the information passed from the grid to the
 
 #### Processor() - This is a graph transformer model
 hyperparameters:
-feature_length = 512 -- this is d_attn in formal algorithms
-khop=32 -- This is the size of the neighborhood of nodes the node in question will attend to
-nheads=4 -- how many self-attention heads would you like in each MHA block?
-n_mhablocks=16 -- how many consecutive MHA blocks would you like?
+- feature_length = 512 -- this is d_attn in formal algorithms
+- khop=32 -- This is the size of the neighborhood of nodes the node in question will attend to
+- nheads=4 -- how many self-attention heads would you like in each MHA block?
+- n_mhablocks=16 -- how many consecutive MHA blocks would you like?
 
 ```
 # For demonstration we select one node
