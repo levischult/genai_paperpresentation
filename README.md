@@ -121,6 +121,7 @@ for b in n_mhablocks:
 #### Denoiser ()
 - This is part of the diffusion architecture and is beyond the scope of this presentation. For details, see section D.3 of the arXiv version of this paper.
 - This step essentially uses the predictions from the Encoder-Processor-Decoder architecture + noise of a known level to progressively denoise into a finely detailed set of residuals that are used to propagate the current weather state into the next.
+- Note for GenCast: the number of steps for the diffusion model N=20
 
 ![image](./images/diffusionimg.png) 
 
