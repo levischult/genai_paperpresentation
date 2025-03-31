@@ -9,6 +9,9 @@ Price, I., Sanchez-Gonzalez, A., Alet, F. et al. Probabilistic weather forecasti
 - **Machine Learning Weather Prediction (MLWP)** has recently emerged using a variety of techniques (Convolutional Neural Networks, Graph Neural Networks, Fourier Neural Operators, and Transformers -- see citations for works). These approaches have not been probalistic in nature, however, usually forecasting the _mean_ of forecast trajectories. **Without the probabilistic nature of the forecast, these methods are less useful for stakeholders.** 
   - Additionally, they tend to "blur" predictions with long lead times (10 days out) as this minimizes the error but it's predictions are not physically real versions of weather.
 
+![image](./images/gencastvgraphcast.png)
+
+
 - GenCast solves these problems by creating ensemble forecasts. It implements a conditional diffusion model which enables easy sampling from the probability distribution of future weather (each forecast has different initial noise that the model starts from, creating an ensemble encompassing the distribution).
 
 ## Architecture Overview
