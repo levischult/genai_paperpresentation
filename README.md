@@ -111,18 +111,16 @@ for b in n_mhablocks:
       Y^h = Attention(n_mesh_embed_0, neighbor)
   Y = [Y_neighbor^h...]
   n_mesh_embed_0_prime = W_0 Y + b_0 I^T
-
+  n_mesh_embed_0 = n_mesh_embed_0_prime
 ```
 
+#### Decoder () - This is a Graph Neural Network
+- This is roughly equivalent to the Encoder, but instead using `e_m2g_embed` to move information unidirectionally from the mesh back to the grid.
+- Importantly, with the diffusion architecture, we are actually predicting the residual difference of the next atmospheric state from the current one.
 
-
-
-1. node_features = Grid2MeshGNN(nodenumber, atmstate-1, atmstate-2)
-
-Processor(nodenumber, khop=32, 
-
-
-
+#### Denoiser ()
+- This is part of the diffusion architecture and is beyond the scope of this presentation. For details, see section D.3 of the arXiv version of this paper.
+- This step essentially uses the predictions from the Encoder-Processor-Decoder architecture + noise of a known level to progressively denoise into a finely detailed set of residuals that are used to propagate the current weather state into the next.
 
 
 ## Critical Analysis
