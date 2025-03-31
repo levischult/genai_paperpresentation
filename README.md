@@ -37,7 +37,7 @@ This whole process must be parallelized across the mesh (~41k nodes, ~246k edges
 Forgive my ignorance around graph neural networks.
 
 `n_grid_features = (atmstate-1, atmstate0, forcing-1, forcing0, forcing1, constants)`
-- number suffixes indicate timestep. We are attempting to predict the next atmospheric state based on the current one and the one before it: $P(atmstate1 | atmstate0, atmstate-1)$
+- number suffixes indicate timestep. We are attempting to predict the next atmospheric state based on the current one and the one before it: $P(atmstate_1 | atmstate_0, atmstate_{-1})$
 - atmstate is composed of 6 surface variables + 6 atmospheric variables x 13 pressure levels
 - forcings are external factors that influence the weather (solar radiation at the top of the atmosphere, location on globe, time of year (5 factors). These can be computed analytically.
 - constants are land-sea mask, surface geopotential and other variables that are known for each grid point.
