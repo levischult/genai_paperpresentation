@@ -134,6 +134,7 @@ for b in n_mhablocks:
 
 ## Critical Analysis
 - The description of the model architecture is difficult to understand. While it is primarily based on GraphCast, how the Denoiser interacts with the predictions made by the Graph Transformer
+- A detailed description of the graph transfomer model in the GenCast processor is absent. In the demonstration notebook there is 'splash-mha', 'mha', and 'triblockdiag-mha', which of these is used in the published version of GenCast is unclear from the paper. Additionally what are the differences between these?
 - Authors provide ample results from evaluating the accuracy of ensembles (are distributions over/under spread?)
 
 ## Impacts
