@@ -25,6 +25,12 @@ Sparse Transformer
 ![image](./images/sparsetrans.png) 
 
 
+### Question:
+Why would a sparse transformer be preferred to a normal transformer?
+
+- Answer: Compute and also physics - Performing attention for every node on all others is a huge load on the model. Additionally, we expect the weather in Nashville to be primarily affected by conditions in our local area e.g. Tennessee, rather than the conditions in Australia for example.
+
+
 ### Pseudocode
 
 This whole process must be parallelized across the mesh (~41k nodes, ~246k edges) and grid (for 0.25 degree resolution, there are 1,038,240 grid nodes).
@@ -118,17 +124,13 @@ Processor(nodenumber, khop=32,
 
 
 
-## Question:
-Why would a sparse transformer be preferred to a normal transformer?
-
-- Answer: Compute and also physics - Performing attention for every node on all others is a huge load on the model. Additionally, we expect the weather in Nashville to be primarily affected by conditions in our local area e.g. Tennessee, rather than the conditions in Australia for example.
-
 ## Critical Analysis
-- The description of the model architecture is difficult to understand. While it is primarily based on GraphCast, how the Denoiser interacts with the predictions made by the Graph Transformer 
+- The description of the model architecture is difficult to understand. While it is primarily based on GraphCast, how the Denoiser interacts with the predictions made by the Graph Transformer
+- Authors provide ample results from evaluating the accuracy of ensembles (are distributions over/under spread?)
+
 ## Impacts
 - This work has introduced MLWP as a capable tool for decisionmakers globally. While NWP is still greatly needed, MLWP models such as these can provide rapid cross validation and data to stakeholders around extreme weather events and day-to-day weather.
 - One author on both (Ferran Alet) has spoken about how this work has alerted European weather prediction agencies to the power of MLWP and are now investing in GPU infrastructure for this purpose
-- Authors provide ample results from evaluating the accuracy of ensembles (are distributions over/under spread?)
 - Demonstrates the capabilities of Graph Transformer Models 
 
 ## Code Demonstration
