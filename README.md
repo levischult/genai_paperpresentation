@@ -26,35 +26,41 @@ Sparse Transformer
 
 
 ### Pseudocode
-```
-# This whole process must be parallelized across the mesh (~41k nodes)
-# For this example we will focus on a single node of the mesh
-# Forgive my ignorance around graph neural networks.
 
-# Embed grid nodes, mesh nodes, mesh edges, grid to mesh edges, mesh to grid edges
-# This is done via 5 different MLPs
+This whole process must be parallelized across the mesh (~41k nodes, ~246k edges) and grid (for 0.25 degree resolution, there are 1,038,240 grid nodes).
+Forgive my ignorance around graph neural networks.
+
+`n_grid_features = (atmstate-1, atmstate0, forcing-1, forcing0, forcing1, constants)`
+- atmstate is composed of 6 surface variables + 6 atmospheric variables x 13 pressure levels
+- forcings are external factors that influence the weather (solar radiation at the top of the atmosphere, location on globe, time of year (5 factors). These can be computed analytically.
+- constants are land-sea mask, surface geopotential and other variables that are known for each grid point.
+- Together this becomes a feature dimension of 188 per grid node
+
+
+Embed grid nodes, mesh nodes, mesh edges, grid to mesh edges, mesh to grid edges into latent space via 5 different MLPs
+```
 n_grid_embed = MLP0(n_grid_features)
 n_mesh_embed = MLP1(n_mesh_features)
 e_mesh_embed = MLP2(e_mesh_features)
 e_g2m_embed = MLP3(e_g2m_features)
 e_m2g_embed = MLP4(e_m2g_features)
+```
 
-
-Encoder() # This is a graph neural network
+#### Encoder() This is a graph neural network
 Input:
-nodenumber: node for atmospheric states to be mapped to
-atmstate-1: previous atmospheric state
-atmstate-2: second previous atmospheric state
+e_g2m_embed
+n_grid_embed
+n_mesh_embed
 Output:
 node_features: the features of the node in latent space
-
+```
 # update grid to mesh edges based on adjacent node info with an MLP
 1. e_g2m_e_prime = MLP5(e_g2m_embed, n_grid_embed, n_mesh_embed)
 # mesh node updated by combining info from all edges arriving at node via MLP
 2. n_mesh_e_prime = MLP6(n_mesh_embed, SUM:e_g2m_e_prime)
 # grid nodes are also updated
 3. n_grid_e_prime = MLP7(n_grid_embed)
-
+```
 Processor() # This is a graph transformer model
 
 
@@ -66,7 +72,6 @@ Processor(nodenumber, khop=32,
 
 
 
-```
 
 
 ## Question:
