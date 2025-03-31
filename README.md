@@ -36,6 +36,13 @@ Forgive my ignorance around graph neural networks.
 - constants are land-sea mask, surface geopotential and other variables that are known for each grid point.
 - Together this becomes a feature dimension of 188 per grid node
 
+For readability, I have made the following notation:
+n = node
+e = edge
+grid = the grid of latitude and longitude cells at 0.25 degree resolution
+mesh = the multimesh composed of an isocahedron 6 times refined with edges across the previous refinements
+features = this is the data in feature space (atmospheric variables)
+embed = this is the data in a latent space (dimension unspecified)
 
 Embed grid nodes, mesh nodes, mesh edges, grid to mesh edges, mesh to grid edges into latent space via 5 different MLPs
 ```
@@ -46,13 +53,13 @@ e_g2m_embed = MLP3(e_g2m_features)
 e_m2g_embed = MLP4(e_m2g_features)
 ```
 
-#### Encoder() This is a graph neural network
+#### Encoder() - This is a graph neural network
 Input:
 e_g2m_embed
 n_grid_embed
 n_mesh_embed
 Output:
-node_features: the features of the node in latent space
+The above variables updated based on the information passed from the grid to the mesh
 ```
 # update grid to mesh edges based on adjacent node info with an MLP
 1. e_g2m_e_prime = MLP5(e_g2m_embed, n_grid_embed, n_mesh_embed)
@@ -60,8 +67,40 @@ node_features: the features of the node in latent space
 2. n_mesh_e_prime = MLP6(n_mesh_embed, SUM:e_g2m_e_prime)
 # grid nodes are also updated
 3. n_grid_e_prime = MLP7(n_grid_embed)
+# Reassigning + cleaning up
+4. n_grid_embed = n_grid_embed + n_grid_e_prime
+5. n_mesh_embed = n_mesh_embed + n_mesh_e_prime
+6. e_g2m_embed = e_g2m_embed + e_g2m_e_prime
 ```
-Processor() # This is a graph transformer model
+
+#### Processor() - This is a graph transformer model
+hyperparameters:
+feature_length = 512 -- this is d_attn in formal algorithms
+khop=32 -- This is the size of the neighborhood of nodes the node in question will attend to
+nheads=4 -- how many self-attention heads would you like in each MHA block?
+n_mhablocks=16 -- how many consecutive MHA blocks would you like?
+
+```
+# For demonstration we select one node
+n_mesh_embed_0 = n_mesh_embed[0]
+
+# find neighbors for each mesh node to attend to. We do this by finding all nodes
+# within khop distance (along e_mesh_embed) from the selected node (n_mesh_embed_0)
+# we also add the selected node to the neighborhood so it can attend to itself.
+n_mesh_neighborhood = nodes_within(khop*e_mesh_embed(n_mesh_embed_0))
+n_mesh_neighborhood += n_mesh_embed_0
+
+# perform mha for each mesh node on itself and its neighborhood
+# note: the below triple for loop is only for demonstration - it is parallelized in GenCast
+# Note here we take advantage of the notation in Formal Algorithms for Transformers
+for b in n_mhablocks:
+  for h in nheads:
+    for neighbor in n_mesh_neighborhood:
+      Y^h = Attention(n_mesh_embed_0, neighbor)
+  Y = [Y_neighbor^h...]
+  n_mesh_embed_0_prime = W_0 Y + b_0 I^T
+
+```
 
 
 
@@ -84,6 +123,7 @@ Why would a sparse transformer be preferred to a normal transformer?
 ## Impacts
 - This work has introduced MLWP as a capable tool for decisionmakers globally. While NWP is still greatly needed, MLWP models such as these can provide rapid cross validation and data to stakeholders around extreme weather events and day-to-day weather.
 - One author on both (Ferran Alet) has spoken about how this work has alerted European weather prediction agencies to the power of MLWP and are now investing in GPU infrastructure for this purpose
+- Authors provide ample results from evaluating the accuracy of ensembles (are distributions over/under spread?)
 - Demonstrates the capabilities of Graph Transformer Models 
 
 ## Code Demonstration
