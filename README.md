@@ -37,13 +37,14 @@ Forgive my ignorance around graph neural networks.
 - Together this becomes a feature dimension of 188 per grid node
 
 For readability, I have made the following notation:
-n = node
-e = edge
-grid = the grid of latitude and longitude cells at 0.25 degree resolution
-mesh = the multimesh composed of an isocahedron 6 times refined with edges across the previous refinements
-features = this is the data in feature space (atmospheric variables)
-embed = this is the data in a latent space (dimension unspecified)
+- n = node
+- e = edge
+- grid = the grid of latitude and longitude cells at 0.25 degree resolution
+- mesh = the multimesh composed of an isocahedron 6 times refined with edges across the previous refinements
+- features = this is the data in feature space (atmospheric variables)
+- embed = this is the data in a latent space (dimension unspecified)
 
+#### Step 0:
 Embed grid nodes, mesh nodes, mesh edges, grid to mesh edges, mesh to grid edges into latent space via 5 different MLPs
 ```
 n_grid_embed = MLP0(n_grid_features)
@@ -52,6 +53,8 @@ e_mesh_embed = MLP2(e_mesh_features)
 e_g2m_embed = MLP3(e_g2m_features)
 e_m2g_embed = MLP4(e_m2g_features)
 ```
+
+
 
 #### Encoder() - This is a graph neural network
 Input:
@@ -72,6 +75,8 @@ Output:
 5. n_mesh_embed = n_mesh_embed + n_mesh_e_prime
 6. e_g2m_embed = e_g2m_embed + e_g2m_e_prime
 ```
+
+
 
 #### Processor() - This is a graph transformer model
 hyperparameters:
