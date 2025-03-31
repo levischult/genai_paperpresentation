@@ -122,6 +122,8 @@ for b in n_mhablocks:
 - This is part of the diffusion architecture and is beyond the scope of this presentation. For details, see section D.3 of the arXiv version of this paper.
 - This step essentially uses the predictions from the Encoder-Processor-Decoder architecture + noise of a known level to progressively denoise into a finely detailed set of residuals that are used to propagate the current weather state into the next.
 
+![image](./images/diffusionimg.png) 
+
 
 ## Critical Analysis
 - The description of the model architecture is difficult to understand. While it is primarily based on GraphCast, how the Denoiser interacts with the predictions made by the Graph Transformer
@@ -133,9 +135,14 @@ for b in n_mhablocks:
 - Demonstrates the capabilities of Graph Transformer Models 
 
 ## Code Demonstration
+![image](./images/colaboptions.png)
+
 [Google Colab](https://colab.research.google.com/github/deepmind/graphcast/blob/master/gencast_mini_demo.ipynb)
 - I did not make this as it requires usage of Google TPUs for inference
-- 
+- You can mess around with the transformer piece of the model and compare performance!
+- I was able to get bad performance by reducing the feature space of the attention heads - less rich embedding space == less learned from neighborhood context!
+- What can you find?
+
 
 ## Resources
 - [Ferran Alet speaking on: Graph Neural Networks for Skillful Weather Forecasting](https://youtu.be/ez1pIFcU52s?si=37FJSf73FI5CInzn)
