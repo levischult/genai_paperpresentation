@@ -29,10 +29,7 @@ Sparse Transformer
 ```
 # This whole process must be parallelized across the mesh (~41k nodes)
 # For this example we will focus on a single node of the mesh
-# Forgive my ignorance around graph
-
-atmo_t-1 = x #
-atmo_t-2 = y
+# Forgive my ignorance around graph neural networks.
 
 # Embed grid nodes, mesh nodes, mesh edges, grid to mesh edges, mesh to grid edges
 # This is done via 5 different MLPs
@@ -43,7 +40,7 @@ e_g2m_embed = MLP3(e_g2m_features)
 e_m2g_embed = MLP4(e_m2g_features)
 
 
-Encoder()
+Encoder() # This is a graph neural network
 Input:
 nodenumber: node for atmospheric states to be mapped to
 atmstate-1: previous atmospheric state
@@ -51,6 +48,14 @@ atmstate-2: second previous atmospheric state
 Output:
 node_features: the features of the node in latent space
 
+# update grid to mesh edges based on adjacent node info with an MLP
+1. e_g2m_e_prime = MLP5(e_g2m_embed, n_grid_embed, n_mesh_embed)
+# mesh node updated by combining info from all edges arriving at node via MLP
+2. n_mesh_e_prime = MLP6(n_mesh_embed, SUM:e_g2m_e_prime)
+# grid nodes are also updated
+3. n_grid_e_prime = MLP7(n_grid_embed)
+
+Processor() # This is a graph transformer model
 
 
 
