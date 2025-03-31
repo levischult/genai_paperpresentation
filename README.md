@@ -12,13 +12,14 @@ Price, I., Sanchez-Gonzalez, A., Alet, F. et al. Probabilistic weather forecasti
 - GenCast solves these problems by creating ensemble forecasts. It implements a conditional diffusion model which enables easy sampling from the probability distribution of future weather (each forecast has different initial noise that the model starts from, creating an ensemble encompassing the distribution).
 
 ## Architecture Overview
-- The architecture of GenCast is heavily based on the previous work: GraphCast. It is helpful to have a basic understanding of this. GraphCast consists of a encoder, processor, and decoder elements. The encoder maps input data (temperature, pressure, wind speed etc.) to a mesh. This mesh is comprised of the nodes and edges for an up to 6-times refined icosahedral mesh around the globe. 
-
-Sparse Transformer
-- easier to compute (less connections for each node)
-- inherently account for geography of earth
-
-
+- The architecture of GenCast is heavily based on the previous work: GraphCast. It is helpful to have a basic understanding of this.
+- GraphCast consists of a encoder, processor, and decoder elements. They work to move the data into a latent space on a uniform multimesh across the world. This mesh is comprised of the nodes and edges for an up to 6-times refined icosahedral mesh around the globe.
+- The encoder maps input data (temperature, pressure, wind speed etc.) to the mesh.
+- The processor uses a 16 layer graph neural network to inform each node based on the nodes it is connected to
+  - This step is where GenCast and GraphCast differ
+  - _GenCast uses a sparse transformer to have each node attend to itself and its neighbors within a 32 hop neighborhood._
+- The decoder maps the updated mesh nodes back to a latitude-longitude grid and converts it into a forecast.
+- _GenCast also implements a diffusion architecture to make ensemble forecasting easier and to have each member forecast representative of true weather_
 
 ![image](./images/graphcastmesh.png) 
 
@@ -28,7 +29,7 @@ Sparse Transformer
 ### Question:
 Why would a sparse transformer be preferred to a normal transformer?
 
-- Answer: Compute and also physics - Performing attention for every node on all others is a huge load on the model. Additionally, we expect the weather in Nashville to be primarily affected by conditions in our local area e.g. Tennessee, rather than the conditions in Australia for example.
+- Answer: Compute and also physics - Performing attention for every node on all others is a huge load on the model (~41k nodes!). Additionally, we expect the weather in Nashville to be primarily affected by conditions in our local area e.g. Tennessee, rather than the conditions in Australia for example.
 
 
 ### Pseudocode
