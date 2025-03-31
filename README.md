@@ -14,6 +14,8 @@ Price, I., Sanchez-Gonzalez, A., Alet, F. et al. Probabilistic weather forecasti
 
 - GenCast solves these problems by creating ensemble forecasts. It implements a conditional diffusion model which enables easy sampling from the probability distribution of future weather (each forecast has different initial noise that the model starts from, creating an ensemble encompassing the distribution).
 
+![image](./images/diffusionimg.png)
+
 ## Architecture Overview
 - The architecture of GenCast is heavily based on the previous work: GraphCast. It is helpful to have a basic understanding of this.
 - GraphCast consists of a encoder, processor, and decoder elements. They work to move the data into a latent space on a uniform multimesh across the world. This mesh is comprised of the nodes and edges for an up to 6-times refined icosahedral mesh around the globe.
