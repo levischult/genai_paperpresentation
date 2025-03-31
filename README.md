@@ -24,7 +24,44 @@ Sparse Transformer
 
 ![image](./images/sparsetrans.png) 
 
-`pseudocode test`
+
+### Pseudocode
+```
+# This whole process must be parallelized across the mesh (~41k nodes)
+# For this example we will focus on a single node of the mesh
+# Forgive my ignorance around graph
+
+atmo_t-1 = x #
+atmo_t-2 = y
+
+# Embed grid nodes, mesh nodes, mesh edges, grid to mesh edges, mesh to grid edges
+# This is done via 5 different MLPs
+n_grid_embed = MLP0(n_grid_features)
+n_mesh_embed = MLP1(n_mesh_features)
+e_mesh_embed = MLP2(e_mesh_features)
+e_g2m_embed = MLP3(e_g2m_features)
+e_m2g_embed = MLP4(e_m2g_features)
+
+
+Encoder()
+Input:
+nodenumber: node for atmospheric states to be mapped to
+atmstate-1: previous atmospheric state
+atmstate-2: second previous atmospheric state
+Output:
+node_features: the features of the node in latent space
+
+
+
+
+
+1. node_features = Grid2MeshGNN(nodenumber, atmstate-1, atmstate-2)
+
+Processor(nodenumber, khop=32, 
+
+
+
+```
 
 
 ## Question:
