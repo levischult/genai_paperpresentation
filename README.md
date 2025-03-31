@@ -9,10 +9,10 @@ Price, I., Sanchez-Gonzalez, A., Alet, F. et al. Probabilistic weather forecasti
 - **Machine Learning Weather Prediction (MLWP)** has recently emerged using a variety of techniques (Convolutional Neural Networks, Graph Neural Networks, Fourier Neural Operators, and Transformers -- see citations for works). These approaches have not been probalistic in nature, however, usually forecasting the _mean_ of forecast trajectories. **Without the probabilistic nature of the forecast, these methods are less useful for stakeholders.** 
   - Additionally, they tend to "blur" predictions with long lead times (10 days out) as this minimizes the error but it's predictions are not physically real versions of weather.
 
-- GenCast solves these problems by 
+- GenCast solves these problems by creating ensemble forecasts. It implements a conditional diffusion model which enables easy sampling from the probability distribution of future weather (each forecast has different initial noise that the model starts from, creating an ensemble encompassing the distribution).
 
 ## Architecture Overview
-
+- The architecture of GenCast is heavily based on the previous work: GraphCast. It is helpful to have a basic understanding of this. GraphCast consists of a encoder, processor, and decoder elements. The encoder maps input data (temperature, pressure, wind speed etc.) to a mesh. This mesh is comprised of the nodes and edges for an up to 6-times refined icosahedral mesh around the globe. 
 
 Sparse Transformer
 - easier to compute (less connections for each node)
@@ -24,6 +24,8 @@ Sparse Transformer
 
 ![image](./images/sparsetrans.png) 
 
+`pseudocode test`
+
 
 ## Question:
 Why would a sparse transformer be preferred to a normal transformer?
@@ -31,10 +33,16 @@ Why would a sparse transformer be preferred to a normal transformer?
 - Answer: Compute and also physics - Performing attention for every node on all others is a huge load on the model. Additionally, we expect the weather in Nashville to be primarily affected by conditions in our local area e.g. Tennessee, rather than the conditions in Australia for example.
 
 ## Critical Analysis
-
+- The description of the model architecture is difficult to understand. While it is primarily based on GraphCast, how the Denoiser interacts with the predictions made by the Graph Transformer 
 ## Impacts
-- This work as well as GraphCast have introduced MLWP as a capable tool for decisionmakers globally. While NWP is still greatly needed, MLWP models such as these can provide rapid cross validation and data to stakeholders around extreme weather events.
+- This work has introduced MLWP as a capable tool for decisionmakers globally. While NWP is still greatly needed, MLWP models such as these can provide rapid cross validation and data to stakeholders around extreme weather events and day-to-day weather.
 - One author on both (Ferran Alet) has spoken about how this work has alerted European weather prediction agencies to the power of MLWP and are now investing in GPU infrastructure for this purpose
+- Demonstrates the capabilities of Graph Transformer Models 
+
+## Code Demonstration
+[Google Colab](https://colab.research.google.com/github/deepmind/graphcast/blob/master/gencast_mini_demo.ipynb)
+- I did not make this as it requires usage of Google TPUs for inference
+- 
 
 ## Resources
 - [Ferran Alet speaking on: Graph Neural Networks for Skillful Weather Forecasting](https://youtu.be/ez1pIFcU52s?si=37FJSf73FI5CInzn)
